@@ -1,0 +1,14 @@
+
+#used in production
+/venv
+/.idea
+bot_inventory.json
+items_game.txt
+test_inv.json
+tf2_schema.txt
+effects.json
+effects.txt
+
+#private
+Steamguard.txt
+creds.py
