@@ -20,17 +20,21 @@ sku = '5021;6'
 # Converts the sku string into an item object
 item = SKU.fromstring(sku)
 """
-{
+item = {
     'defindex': 5021,
     'quality': 6,
-    'craftable': true,
+    'craftable': True,
+    'tradable': True,
     'killstreak': 0,
-    'australium': false,
-    'festive': false,
-    'effect': null,
-    'quality2': null,
-    'target': null,
-    'craftnumber': null
+    'australium': False,
+    'festive': False,
+    'effect': None,
+    'quality2': None,
+    'target': None,
+    'craftnumber': None,
+    'crateseries': None,
+    'output': None,
+    'outputquality': None
 }
 """
 ```
@@ -42,17 +46,49 @@ item = SKU.fromstring(sku)
 item = {
     'defindex': 5021,
     'quality': 6,
-    'craftable': true,
+    'craftable': True,
+    'tradable': True,
     'killstreak': 0,
-    'australium': false,
-    'festive': false,
-    'effect': null,
-    'quality2': null,
-    'target': null,
-    'craftnumber': null
+    'australium': False,
+    'festive': False,
+    'effect': None,
+    'quality2': None,
+    'target': None,
+    'craftnumber': None,
+    'crateseries': None,
+    'output': None,
+    'outputquality': None
 }
 
 # Converts the item object into an sku string
-sku = SKU.fromitem(item);
+sku = SKU.fromitem(item)
 # sku = '5021;6'
 ```
+
+```py
+
+
+# Empty dict
+item = {}
+
+# Converts the dictionary into item template
+template = SKU.matchtemplate(item)
+template = {
+        'defindex': 0,
+        'quality': 0,
+        'craftable': True,
+        'tradable': True,
+        'killstreak': 0,
+        'australium': False,
+        'festive': False,
+        'effect': None,
+        'quality2': None,
+        'target': None,
+        'craftnumber': None,
+        'crateseries': None,
+        'output': None,
+        'outputquality': None
+    }
+```
+
+Inspired by: https://github.com/Nicklason/node-tf2-sku
