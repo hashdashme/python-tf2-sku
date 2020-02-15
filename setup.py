@@ -5,7 +5,7 @@ version = '0.1'
 
 setup(
     name='tf2-sku',
-    packages=['steampy', 'test', 'examples', ],
+    packages=['python-tf2-sku'],
     version=version,
     description='Python lib for creating sku',
     author='Jędrzej Szadejko',
