@@ -8,7 +8,8 @@ test_inv.json
 tf2_schema.txt
 effects.json
 effects.txt
-
+test_inv1.json
+test.py
 #private
 Steamguard.txt
 creds.py
