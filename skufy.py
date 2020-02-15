@@ -110,12 +110,3 @@ class SKU:
         self.sku = sku
         self.TEMPLATE = TEMPLATE
         self.item = item
-
-
-a = SKU()
-print(a.fromstring('20002;6;td-201;od-6523;oq-6'))
-item = a.fromstring('20002;6;uncraftable;td-201;od-6523;oq-6')
-sku = a.fromitem(item)
-print(sku)
-
-
