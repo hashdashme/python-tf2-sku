@@ -19,7 +19,7 @@ sku = '5021;6'
 
 # Converts the sku string into an item object
 item = SKU.fromstring(sku)
-"""
+
 item = {
     'defindex': 5021,
     'quality': 6,
@@ -36,7 +36,7 @@ item = {
     'output': None,
     'outputquality': None
 }
-"""
+
 ```
 
 ```py
