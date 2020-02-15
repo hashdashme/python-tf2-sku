@@ -113,7 +113,7 @@ class SKU:
         if item['killstreak'] != 0:
             sku += ';ks-{}'.format(item['killstreak'])
         if item['effect'] is not None:
-            sku += ';u={}'.format(item['effect'])
+            sku += ';u-{}'.format(item['effect'])
         if item['target'] is not None:
             sku += ';td-{}'.format(item['target'])
         if item['craftnumber'] is not None:
@@ -121,9 +121,9 @@ class SKU:
         if item['crateseries'] is not None:
             sku += ';c{}'.format(item['crateseries'])
         if item['output'] is not None:
-            sku += ';od{}'.format(item['output'])
+            sku += ';od-{}'.format(item['output'])
         if item['outputquality'] is not None:
-            sku += ';oq{}'.format((item['outputquality']))
+            sku += ';oq-{}'.format((item['outputquality']))
 
         return sku
 
