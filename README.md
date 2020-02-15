@@ -2,6 +2,7 @@
 
 
 Format items and web api results as strings or objects
+``` pip install tf2sku ```
 
 ## What is an SKU
 
