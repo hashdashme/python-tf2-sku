@@ -102,6 +102,7 @@ template = {
 
 
 # Single item record from TF2 web api (Specialized Killstreak Reserve Shooter Kit Fabricator) 
+# This method does not work for chemistry sets, because of TF2 Web Api Error.
 item = {
 	'id': 8450165216, 
 	'original_id': 8450165216, 
