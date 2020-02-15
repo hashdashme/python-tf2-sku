@@ -2,6 +2,7 @@
 #used in production
 /venv
 /.idea
+/__pycache__
 bot_inventory.json
 items_game.txt
 test_inv.json
