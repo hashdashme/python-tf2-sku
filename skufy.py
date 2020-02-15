@@ -1,23 +1,26 @@
-TEMPLATE = {
-    'defindex': 0,
-    'quality': 0,
-    'craftable': True,
-    'killstreak': 0,
-    'australium': False,
-    'festive': False,
-    'effect': None,
-    'quality2': None,
-    'target': None,
-    'craftnumber': None,
-    'crateseries': None,
-    'output': None,
-    'outputquality': None
-}
 
 """
     Format items as string or objects
 """
+
+
 class SKU:
+    template = {
+        'defindex': 0,
+        'quality': 0,
+        'craftable': True,
+        'tradable': True,
+        'killstreak': 0,
+        'australium': False,
+        'festive': False,
+        'effect': None,
+        'quality2': None,
+        'target': None,
+        'craftnumber': None,
+        'crateseries': None,
+        'output': None,
+        'outputquality': None
+    }
     """
     Convert SKU to object
 
@@ -27,46 +30,61 @@ class SKU:
     Output format:
     Template above
     """
-    def fromstring(self, sku):
+    @staticmethod
+    def fromstring(sku):
+        item = {}
         parts = sku.split(';')
-        item_object = self.TEMPLATE
         if len(parts) > 0:
-            print('elo')
             if isinstance(parts[0], str):
-                item_object['defindex'] = int(parts[0])
+                item['defindex'] = int(parts[0])
                 del parts[:1]
         if len(parts) > 0:
             if isinstance(parts[0], str):
-                item_object['quality'] = int(parts[0])
+                item['quality'] = int(parts[0])
                 del parts[:1]
         for i in range(len(parts)):
             attribute = parts[i].replace('-', '')
             attribute = str(attribute)
-            print(attribute)
             if attribute == 'uncraftable':
-                item_object['craftable'] = False
+                item['craftable'] = False
             elif attribute == 'australium':
-                item_object['australium'] = True
+                item['australium'] = True
+            elif attribute == 'untradable':
+                item['untradable'] = True
             elif attribute == 'festive':
-                item_object['festive'] = True
+                item['festive'] = True
             elif attribute == 'strange':
-                item_object['quality2'] = 11
+                item['quality2'] = 11
             elif attribute.startswith('kt'):
-                item_object['killstreak'] = int(attribute[2:])
+                item['killstreak'] = int(attribute[2:])
             elif attribute.startswith('u'):
-                item_object['effect'] = int(attribute[1:])
+                item['effect'] = int(attribute[1:])
             elif attribute.startswith('td'):
-                item_object['target'] = int(attribute[2:])
+                item['target'] = int(attribute[2:])
             elif attribute.startswith('n'):
-                item_object['craftnumber'] = int(attribute[1:])
+                item['craftnumber'] = int(attribute[1:])
             elif attribute.startswith('c'):
-                item_object['crateseries'] = int(attribute[1:])
+                item['crateseries'] = int(attribute[1:])
             elif attribute.startswith('od'):
-                item_object['output'] = int(attribute[2:])
+                item['output'] = int(attribute[2:])
             elif attribute.startswith('oq'):
-                item_object['outputquality'] = int(attribute[2:])
+                item['outputquality'] = int(attribute[2:])
 
-        return item_object
+        item = SKU.matchtemplate(item)
+
+        return item
+
+    """
+        Match the generated item to the template
+    """
+    @staticmethod
+    def matchtemplate(item, template=template):
+        for attribute in template:
+            if attribute not in item:
+                item[attribute] = template[attribute]
+            else:
+                pass
+        return item
 
     """
         Convert object to SKU
@@ -77,36 +95,36 @@ class SKU:
         Output format:
         <varchar>;<varchar>
     """
-    def fromitem(self, item):
+    @staticmethod
+    def fromitem(item):
 
-        self.sku = '{};{}'.format(item['defindex'], item['quality'])
+        sku = '{};{}'.format(item['defindex'], item['quality'])
 
         if not item['craftable']:
-            self.sku += ';uncraftable'
+            sku += ';uncraftable'
         if item['australium']:
-            self.sku += ';australium'
+            sku += ';australium'
         if item['festive']:
-            self.sku += ';festive'
+            sku += ';festive'
+        if item['untradable']:
+            sku += ';untradable'
         if item['quality2'] is not None:
-            self.sku += ';{}'.format(item['quality2'])
+            sku += ';{}'.format(item['quality2'])
         if item['killstreak'] != 0:
-            self.sku += ';ks-{}'.format(item['killstreak'])
+            sku += ';ks-{}'.format(item['killstreak'])
         if item['effect'] is not None:
-            self.sku += ';u={}'.format(item['effect'])
+            sku += ';u={}'.format(item['effect'])
         if item['target'] is not None:
-            self.sku += ';td-{}'.format(item['target'])
+            sku += ';td-{}'.format(item['target'])
         if item['craftnumber'] is not None:
-            self.sku += ';n{}'.format(item['craftnumber'])
+            sku += ';n{}'.format(item['craftnumber'])
         if item['crateseries'] is not None:
-            self.sku += ';c{}'.format(item['crateseries'])
+            sku += ';c{}'.format(item['crateseries'])
         if item['output'] is not None:
-            self.sku += ';od{}'.format(item['output'])
+            sku += ';od{}'.format(item['output'])
         if item['outputquality'] is not None:
-            self.sku += ';oq{}'.format((item['outputquality']))
+            sku += ';oq{}'.format((item['outputquality']))
 
-        return self.sku
+        return sku
 
-    def __init__(self, sku=None, item=None):
-        self.sku = sku
-        self.TEMPLATE = TEMPLATE
-        self.item = item
+
