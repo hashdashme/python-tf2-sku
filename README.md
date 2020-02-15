@@ -14,12 +14,12 @@ The SKU can safely be used to identify items, since they contain all information
 ```py
 from skufy import SKU
 
-// SKU of a Mann Co. Supply Crate Key - 5021 is the defindex, 6 is the quality
+# SKU of a Mann Co. Supply Crate Key - 5021 is the defindex, 6 is the quality
 sku = '5021;6'
 
-// Converts the sku string into an item object
+# Converts the sku string into an item object
 item = SKU.fromstring(sku)
-/* ->
+"""
 {
     'defindex': 5021,
     'quality': 6,
@@ -32,13 +32,13 @@ item = SKU.fromstring(sku)
     'target': null,
     'craftnumber': null
 }
-*/
+"""
 ```
 
 ```py
 
 
-// Mann Co. Supply Crate Key
+# Mann Co. Supply Crate Key
 item = {
     'defindex': 5021,
     'quality': 6,
@@ -52,7 +52,7 @@ item = {
     'craftnumber': null
 }
 
-// Converts the item object into an sku string
+# Converts the item object into an sku string
 sku = SKU.fromitem(item);
-// -> '5021;6'
+# sku = '5021;6'
 ```
