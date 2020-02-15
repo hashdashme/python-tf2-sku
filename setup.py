@@ -1,11 +1,11 @@
 from setuptools import setup
 
 
-version = '0.1'
+version = '0.1.1'
 
 setup(
     name='tf2-sku',
-    packages=['python-tf2-sku'],
+    packages=['tf2-sku'],
     version=version,
     description='Python lib for creating sku',
     author='Jędrzej Szadejko',
