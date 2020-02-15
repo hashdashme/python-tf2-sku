@@ -1,39 +1,121 @@
-# TEMPLATE = {
-#     defindex: 0,
-#     quality: 0,
-#     craftable: true,
-#     killstreak: 0,
-#     australium: false,
-#     festive: false,
-#     effect: null,
-#     paintkit: null,
-#     wear: null,
-#     quality2: null,
-#     target: null,
-#     craftnumber: null,
-#     crateseries: null,
-#     output: null,
-#     outputQuality: null
-# }
-from json import dump
-from creds import steam, steam_password, api_key
-from steampy.client import SteamClient, InvalidCredentials
-from steampy.models import GameOptions
+TEMPLATE = {
+    'defindex': 0,
+    'quality': 0,
+    'craftable': True,
+    'killstreak': 0,
+    'australium': False,
+    'festive': False,
+    'effect': None,
+    'quality2': None,
+    'target': None,
+    'craftnumber': None,
+    'crateseries': None,
+    'output': None,
+    'outputquality': None
+}
+
+"""
+    Format items as string or objects
+"""
+class SKU:
+    """
+    Convert SKU to object
+
+    Input format:
+    <varchar>;<varchar>
+
+    Output format:
+    Template above
+    """
+    def fromstring(self, sku):
+        parts = sku.split(';')
+        item_object = self.TEMPLATE
+        if len(parts) > 0:
+            print('elo')
+            if isinstance(parts[0], str):
+                item_object['defindex'] = int(parts[0])
+                del parts[:1]
+        if len(parts) > 0:
+            if isinstance(parts[0], str):
+                item_object['quality'] = int(parts[0])
+                del parts[:1]
+        for i in range(len(parts)):
+            attribute = parts[i].replace('-', '')
+            attribute = str(attribute)
+            print(attribute)
+            if attribute == 'uncraftable':
+                item_object['craftable'] = False
+            elif attribute == 'australium':
+                item_object['australium'] = True
+            elif attribute == 'festive':
+                item_object['festive'] = True
+            elif attribute == 'strange':
+                item_object['quality2'] = 11
+            elif attribute.startswith('kt'):
+                item_object['killstreak'] = int(attribute[2:])
+            elif attribute.startswith('u'):
+                item_object['effect'] = int(attribute[1:])
+            elif attribute.startswith('td'):
+                item_object['target'] = int(attribute[2:])
+            elif attribute.startswith('n'):
+                item_object['craftnumber'] = int(attribute[1:])
+            elif attribute.startswith('c'):
+                item_object['crateseries'] = int(attribute[1:])
+            elif attribute.startswith('od'):
+                item_object['output'] = int(attribute[2:])
+            elif attribute.startswith('oq'):
+                item_object['outputquality'] = int(attribute[2:])
+
+        return item_object
+
+    """
+        Convert object to SKU
+
+        Input format:
+        Template above
+
+        Output format:
+        <varchar>;<varchar>
+    """
+    def fromitem(self, item):
+
+        self.sku = '{};{}'.format(item['defindex'], item['quality'])
+
+        if not item['craftable']:
+            self.sku += ';uncraftable'
+        if item['australium']:
+            self.sku += ';australium'
+        if item['festive']:
+            self.sku += ';festive'
+        if item['quality2'] is not None:
+            self.sku += ';{}'.format(item['quality2'])
+        if item['killstreak'] != 0:
+            self.sku += ';ks-{}'.format(item['killstreak'])
+        if item['effect'] is not None:
+            self.sku += ';u={}'.format(item['effect'])
+        if item['target'] is not None:
+            self.sku += ';td-{}'.format(item['target'])
+        if item['craftnumber'] is not None:
+            self.sku += ';n{}'.format(item['craftnumber'])
+        if item['crateseries'] is not None:
+            self.sku += ';c{}'.format(item['crateseries'])
+        if item['output'] is not None:
+            self.sku += ';od{}'.format(item['output'])
+        if item['outputquality'] is not None:
+            self.sku += ';oq{}'.format((item['outputquality']))
+
+        return self.sku
+
+    def __init__(self, sku=None, item=None):
+        self.sku = sku
+        self.TEMPLATE = TEMPLATE
+        self.item = item
 
 
-steam_client = SteamClient(api_key)
-try:
-    steam_client.login(steam, steam_password, 'Steamguard.txt')
-    print("logged in")
-except InvalidCredentials:
-    print("Invalid credentials")
+a = SKU()
+print(a.fromstring('20002;6;td-201;od-6523;oq-6'))
+item = a.fromstring('20002;6;uncraftable;td-201;od-6523;oq-6')
+sku = a.fromitem(item)
+print(sku)
 
-inventory = steam_client.get_partner_inventory('76561198065349229', GameOptions('440','2'))
-items = {}
-for item in inventory.values():
-    if item['appid'] == 440:
-        items[item['market_name']] = item
-with open('test_inv.json', 'w') as f:
-    dump(items, f)
-print('success!')
-steam_client.logout
+
