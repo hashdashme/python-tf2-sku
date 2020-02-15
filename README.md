@@ -14,27 +14,34 @@ The SKU can safely be used to identify items, since they contain all information
 ```py
 from skufy import SKU
 
-# SKU of a Mann Co. Supply Crate Key - 5021 is the defindex, 6 is the quality
-sku = '5021;6'
+# SKU of a Specialized Killstreak Reserve Shooter Kit Fabricator:
+	20002 is the defindex, 
+	6 is the quality, 
+	kt-2 is killstreak tier,
+	td-415 is the target item (Reserve Shooter in that case),
+	od-6523 is Specialized Reserve Shooter Killstreak Kit,
+	oq-6 is the quality of output item
+	
+sku = '20002;6;kt-2;td-415;od-6523;oq-6'
 
 # Converts the sku string into an item object
 item = SKU.fromstring(sku)
 
 item = {
-    'defindex': 5021,
-    'quality': 6,
-    'craftable': True,
-    'tradable': True,
-    'killstreak': 0,
-    'australium': False,
-    'festive': False,
-    'effect': None,
-    'quality2': None,
-    'target': None,
-    'craftnumber': None,
-    'crateseries': None,
-    'output': None,
-    'outputquality': None
+	'defindex': 20002, 
+	'quality': 6, 
+	'killstreak': 2, 
+	'target': 415, 
+	'output': 6523, 
+	'outputquality': 6, 
+	'craftable': True, 
+	'tradable': True, 
+	'australium': False, 
+	'festive': False, 
+	'effect': None, 
+	'quality2': None, 
+	'craftnumber': None, 
+	'crateseries': None
 }
 
 ```
@@ -42,27 +49,27 @@ item = {
 ```py
 
 
-# Mann Co. Supply Crate Key
+# Specialized Killstreak Reserve Shooter Kit Fabricator
 item = {
-    'defindex': 5021,
-    'quality': 6,
-    'craftable': True,
-    'tradable': True,
-    'killstreak': 0,
-    'australium': False,
-    'festive': False,
-    'effect': None,
-    'quality2': None,
-    'target': None,
-    'craftnumber': None,
-    'crateseries': None,
-    'output': None,
-    'outputquality': None
+	'defindex': 20002, 
+	'quality': 6, 
+	'killstreak': 2, 
+	'target': 415, 
+	'output': 6523, 
+	'outputquality': 6, 
+	'craftable': True, 
+	'tradable': True, 
+	'australium': False, 
+	'festive': False, 
+	'effect': None, 
+	'quality2': None, 
+	'craftnumber': None, 
+	'crateseries': None
 }
 
 # Converts the item object into an sku string
 sku = SKU.fromitem(item)
-# sku = '5021;6'
+sku = '20002;6;kt-2;td-415;od-6523;oq-6'
 ```
 
 ```py
