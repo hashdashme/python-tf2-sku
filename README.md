@@ -3,6 +3,9 @@
 
 Format items and web api results as strings or objects
 
+## Instalation
+``` pip install tf2sku ```
+
 ## What is an SKU
 
 SKU is the abbreviation of stock keeping unit. These SKUs make it possible to represent items as readable strings, and convert them to and from objects.
@@ -12,7 +15,7 @@ The SKU can safely be used to identify items, since they contain all information
 ## Examples
 
 ```py
-from skufy import SKU
+from tf2sku.skufy import SKU
 
 # SKU of a Specialized Killstreak Reserve Shooter Kit Fabricator:
 	20002 is the defindex, 
