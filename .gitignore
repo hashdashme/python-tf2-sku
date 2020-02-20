@@ -7,3 +7,4 @@ development
 /build
 /tf2sku.egg-info
 /dist
+/tf2sku/__pycache__

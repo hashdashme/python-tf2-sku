@@ -14,12 +14,14 @@ class SKU:
         'australium': False,
         'festive': False,
         'effect': None,
+        'paint_kit': None,
+        'wear': None,
         'quality2': None,
         'target': None,
-        'craftnumber': None,
-        'crateseries': None,
+        'craft_number': None,
+        'crate_series': None,
         'output': None,
-        'outputquality': None
+        'output_quality': None
     }
     """
     Convert SKU to object
@@ -74,20 +76,26 @@ class SKU:
             elif attribute.startswith('u'):
                 item['effect'] = int(attribute[1:])
 
+            elif attribute.startswith('pk'):
+                item['paint_kit'] = int(attribute[2:])
+
+            elif attribute.startswith('w'):
+                item['wear'] = int(attribute[1:])
+
             elif attribute.startswith('td'):
                 item['target'] = int(attribute[2:])
 
             elif attribute.startswith('n'):
-                item['craftnumber'] = int(attribute[1:])
+                item['craft_number'] = int(attribute[1:])
 
             elif attribute.startswith('c'):
-                item['crateseries'] = int(attribute[1:])
+                item['crate_series'] = int(attribute[1:])
 
             elif attribute.startswith('od'):
                 item['output'] = int(attribute[2:])
 
             elif attribute.startswith('oq'):
-                item['outputquality'] = int(attribute[2:])
+                item['output_quality'] = int(attribute[2:])
 
         item = SKU.matchtemplate(item)
 
@@ -133,7 +141,7 @@ class SKU:
         if item['festive']:
             sku += ';festive'
 
-        if item['untradable']:
+        if item['tradable']:
             sku += ';untradable'
 
         if item['quality2'] is not None:
@@ -145,20 +153,26 @@ class SKU:
         if item['effect'] is not None:
             sku += ';u-{}'.format(item['effect'])
 
+        if item['paint_kit'] is not None:
+            sku += ';pk-{}'.format(item['paint_kit'])
+
+        if item['wear'] is not None:
+            sku += ';w-{}'.format(item['wear'])
+
         if item['target'] is not None:
             sku += ';td-{}'.format(item['target'])
 
-        if item['craftnumber'] is not None:
-            sku += ';n{}'.format(item['craftnumber'])
+        if item['craft_number'] is not None:
+            sku += ';n{}'.format(item['craft_number'])
 
-        if item['crateseries'] is not None:
-            sku += ';c{}'.format(item['crateseries'])
+        if item['crate_series'] is not None:
+            sku += ';c{}'.format(item['crate_series'])
 
         if item['output'] is not None:
             sku += ';od-{}'.format(item['output'])
 
-        if item['outputquality'] is not None:
-            sku += ';oq-{}'.format((item['outputquality']))
+        if item['output_quality'] is not None:
+            sku += ';oq-{}'.format((item['output_quality']))
 
         return sku
 

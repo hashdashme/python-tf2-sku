@@ -1,7 +1,7 @@
 from setuptools import setup
 
 
-version = '0.1'
+version = '0.1.1'
 
 setup(
     name='tf2sku',
@@ -12,10 +12,10 @@ setup(
     author_email='shadyprywatny@gmail.com',
     license='MIT',
     url='https://github.com/Jertusz/python-tf2-sku',
-    download_url='https://github.com/Jertusz/python-tf2-sku',
-    keywords=['steam', 'trade', 'tf2', 'teamfortress2' ],
+    download_url='https://github.com/Jertusz/python-tf2-sku/releases',
+    keywords=['steam', 'trade', 'tf2', 'teamfortress2'],
     classifiers=[
-    'Development Status :: 3 - Alpha',
+        'Development Status :: 3 - Alpha',
     ],
     install_requires=[],
 )
