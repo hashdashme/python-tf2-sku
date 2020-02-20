@@ -36,15 +36,17 @@ item = {
 	'killstreak': 2, 
 	'target': 415, 
 	'output': 6523, 
-	'outputquality': 6, 
+	'output_quality': 6, 
 	'craftable': True, 
-	'tradable': True, 
+	'tradable': True,
+	'paint_kit': None,
+	'wear': None,
 	'australium': False, 
 	'festive': False, 
 	'effect': None, 
 	'quality2': None, 
-	'craftnumber': None, 
-	'crateseries': None
+	'craft_number': None, 
+	'crate_series': None
 }
 
 ```
@@ -59,15 +61,17 @@ item = {
 	'killstreak': 2, 
 	'target': 415, 
 	'output': 6523, 
-	'outputquality': 6, 
+	'output_quality': 6, 
 	'craftable': True, 
-	'tradable': True, 
+	'tradable': True,
+	'paint_kit': None,
+	'wear': None,
 	'australium': False, 
 	'festive': False, 
 	'effect': None, 
 	'quality2': None, 
-	'craftnumber': None, 
-	'crateseries': None
+	'craft_number': None, 
+	'crate_series': None
 }
 
 # Converts the item object into an sku string
@@ -92,12 +96,14 @@ template = {
         'australium': False,
         'festive': False,
         'effect': None,
+	'paint_kit': None,
+	'wear': None,
         'quality2': None,
         'target': None,
-        'craftnumber': None,
-        'crateseries': None,
+        'craft_number': None,
+        'crate_series': None,
         'output': None,
-        'outputquality': None
+        'output_quality': None
     }
 ```
 
