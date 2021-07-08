@@ -141,7 +141,7 @@ class SKU:
         if item['festive']:
             sku += ';festive'
 
-        if item['tradable']:
+        if not item['tradable']:
             sku += ';untradable'
 
         if item['quality2'] is not None:
