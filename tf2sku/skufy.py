@@ -148,7 +148,7 @@ class SKU:
             sku += ';{}'.format(item['quality2'])
 
         if item['killstreak'] != 0:
-            sku += ';ks-{}'.format(item['killstreak'])
+            sku += ';kt-{}'.format(item['killstreak'])
 
         if item['effect'] is not None:
             sku += ';u-{}'.format(item['effect'])
