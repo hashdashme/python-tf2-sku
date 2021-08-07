@@ -153,11 +153,11 @@ class SKU:
         if item['effect'] is not None:
             sku += ';u-{}'.format(item['effect'])
 
-        if item['paint_kit'] is not None:
-            sku += ';pk-{}'.format(item['paint_kit'])
-
         if item['wear'] is not None:
-            sku += ';w-{}'.format(item['wear'])
+            sku += ';w{}'.format(item['wear'])
+         
+        if item['paint_kit'] is not None:
+            sku += ';pk{}'.format(item['paint_kit'])
 
         if item['target'] is not None:
             sku += ';td-{}'.format(item['target'])
