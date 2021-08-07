@@ -144,8 +144,8 @@ class SKU:
         if not item['tradable']:
             sku += ';untradable'
 
-        if item['quality2'] is not None:
-            sku += ';{}'.format(item['quality2'])
+        if item['quality2'] == 11:
+            sku += ';strange'
 
         if item['killstreak'] != 0:
             sku += ';kt-{}'.format(item['killstreak'])
